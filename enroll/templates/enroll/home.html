@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CURD with Ajax</title>
+    <link rel="stylesheet" href="{% static 'css/bootstra[.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h2 class="text-center alert alert-danger">
+        Django Function Based View Ajax Bootstrap CURD Project
+      </h2>
+      <div class="row">
+        <div class="col-sm-4">
+          <h4 class="text-center alert alert-info">Add/Update Student</h4>
+          <form action="" method="post">{% csrf_token %} {{form.as_p}}</form>
+          <input
+            type="button"
+            class="btn btn-success"
+            id="btnsave"
+            value="Save"
+          />
+        </div>
+        <div class="col-sm-7">
+          <h4 class="text-center alert alert-info">Show Student Information</h4>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Password</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for stu in stud %}
+              <tr>
+                <td>{{stu.id}}</td>
+                <td>{{stu.name}}</td>
+                <td>{{stu.email}}</td>
+                <td>{{stu.password}}</td>
+                <td>
+                  <input
+                    type="button"
+                    class="btn btn-warning btn-sm"
+                    value="Edit"
+                    data-std="{{stu.id}}"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="button"
+                    class="btn btn-danger btn-sm"
+                    value="Delete"
+                    data-std="{{stu.id}}"
+                  />
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/popper.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    {% include 'enroll/ajax.html' %}
+  </body>
+</html>
